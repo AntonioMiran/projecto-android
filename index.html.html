@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curiosidades de Tecnologia • Android</title>
+
+  <!-- Fonte opcional de destaque (pode remover se quiser offline) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <style>
+    /* ====== Tema / Variáveis ====== */
+    :root{
+      --cor-escura: #063d1e;
+      --cor-media:  #2fa866;
+      --cor-clara:  #3ddc84;
+      --cor-bg:     #c5ebd6;
+      --cor-branco: #ffffff;
+      --cor-texto:  #1a1a1a;
+    }
+
+    /* ====== Reset básico ====== */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    img, iframe { max-width: 100%; display: block; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--cor-texto);
+      background: var(--cor-bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--cor-escura);
+      text-decoration: none;
+    }
+    a:hover, a:focus { text-decoration: underline; }
+
+    /* ====== Cabeçalho com degradê ====== */
+    header.topo {
+      background: linear-gradient(180deg, var(--cor-media), var(--cor-escura));
+      color: var(--cor-branco);
+      padding: 32px 16px 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    }
+    header .limite {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header h1 {
+      font-family: "Bebas Neue", Arial, Helvetica, sans-serif;
+      font-size: clamp(28px, 5vw, 56px);
+      letter-spacing: 1px;
+      margin: 0 0 6px;
+    }
+    header p.subtitulo {
+      margin: 0 0 16px;
+      font-size: clamp(14px, 2.5vw, 18px);
+      opacity: .95;
+    }
+
+    /* ====== Navegação ====== */
+    nav {
+      background: rgba(0,0,0,.15);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      padding: 10px 12px;
+      margin: 0;
+    }
+    nav a {
+      color: #f5f5f5;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: background .2s ease, color .2s ease, transform .1s ease;
+    }
+    nav a:hover, nav a:focus {
+      background: var(--cor-clara);
+      color: #063d1e;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    /* ====== Conteúdo principal ====== */
+    main {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 16px;
+    }
+
+    .card {
+      background: var(--cor-branco);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.08);
+    }
+
+    article h1 {
+      font-size: clamp(22px, 3.5vw, 32px);
+      margin: 0 0 10px;
+      color: var(--cor-escura);
+    }
+    article h2 {
+      font-size: clamp(18px, 3vw, 24px);
+      margin: 24px 0 8px;
+      color: var(--cor-media);
+    }
+    article p {
+      margin: 10px 0;
+      text-align: justify;
+    }
+
+    figure {
+      margin: 18px 0;
+    }
+    figure img {
+      border-radius: 12px;
+    }
+    figcaption {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* ====== Vídeo responsivo (16:9) ====== */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      margin: 16px 0;
+      /* 16:9 */
+      aspect-ratio: 16 / 9;
+    }
+    .video-wrap iframe{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* ====== Aside (conteúdo relacionado) ====== */
+    aside {
+      background: linear-gradient(180deg, #e9f7ef, #ffffff);
+      border-left: 4px solid var(--cor-clara);
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 18px;
+    }
+    aside h3 {
+      margin: 0 0 8px;
+      color: var(--cor-escura);
+    }
+
+    /* ====== Lista com marcadores personalizados ====== */
+    .lista-doces {
+      list-style: none;
+      padding-left: 0;
+      margin: 10px 0;
+    }
+    .lista-doces li {
+      position: relative;
+      padding-left: 28px;
+      margin: 6px 0;
+    }
+    .lista-doces li::before{
+      content: "🍬";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    /* ====== Links externos com emoji automático ====== */
+    a[rel~="external"]::after{
+      content: " 🔗";
+    }
+
+    /* ====== Rodapé ====== */
+    footer.site {
+      margin-top: 24px;
+      background: var(--cor-escura);
+      color: #eaeaea;
+      padding: 16px;
+    }
+    footer.site .limite {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 8px;
+    }
+    footer.site a {
+      color: #d8ffe9;
+      font-weight: 600;
+    }
+    footer.site small { opacity: .9; }
+
+    /* ====== Responsividade extra ====== */
+    @media (max-width: 540px){
+      nav ul { gap: 6px; }
+      nav a { padding: 8px 10px; }
+      .card { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== Cabeçalho ====== -->
+  <header class="topo">
+    <div class="limite">
+      <h1>CURIOSIDADES DE TECNOLOGIA</h1>
+      <p class="subtitulo">Tudo aquilo que você sempre quis saber sobre o mundo Tech, em um único lugar.</p>
+
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Notícias</a></li>
+          <li><a href="#">Curiosidades</a></li>
+          <li><a href="#">Fale Conosco</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== Conteúdo ====== -->
+  <main>
+    <article class="card">
+      <h1>História do mascote do Android</h1>
+      <p>Provavelmente você sabe que o sistema operacional
+        <a href="https://www.android.com" target="_blank" rel="external noopener">Android</a>
+        é mantido pelo Google. Mas você sabia que o simpático mascote tem um nome e uma história curiosa?
+        Acompanhe este artigo para conhecer o robozinho. 🤖
+      </p>
+
+      <h2>A primeira versão</h2>
+      <p>Em 2007, o desenvolvedor <a href="https://danmorrill.org" target="_blank" rel="external noopener">Dan Morrill</a>
+        abriu o <strong>Inkscape</strong> (software livre para vetorização de imagens) e criou sua própria versão de robô.
+        Era apenas para personalizar o sistema da equipe — não havia solicitação oficial de um mascote.</p>
+
+      <figure>
+        <img src="imagens/dan-droids.png" alt="Primeiros robôs criados por Dan Morrill" loading="lazy">
+        <figcaption>Os “Dandroids”, a primeira leva de robôs — em homenagem ao criador.</figcaption>
+      </figure>
+
+      <h2>Surge um novo mascote</h2>
+      <p>A ideia amadureceu e a missão passou para a ilustradora russa
+        <a href="https://www.irinablok.com" target="_blank" rel="external noopener">Irina Blok</a>, então funcionária do Google.
+        O objetivo: representar o robô com poucos traços, visual chapado e identificação rápida.</p>
+
+      <figure>
+        <img src="imagens/irina-blok.jpg" alt="Foto de Irina Blok" loading="lazy">
+        <figcaption>Irina Blok, a designer por trás do visual do Android.</figcaption>
+      </figure>
+
+      <p>Nascia o <strong>Bugdroid</strong>, inspirado nos ícones de portas de banheiro — simples, direto e universal.</p>
+
+      <!-- Vídeo responsivo -->
+      <div class="video-wrap" aria-label="Vídeo sobre a história do Android">
+        <iframe
+          src="https://www.youtube.com/embed/mTvVzTTBK8M?si=v2k9Nu925BaKBun_"
+          title="História do mascote do Android"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <aside>
+        <h3>Quer aprender mais?</h3>
+        <p>Curiosidade: por anos, as versões do Android receberam nomes de doces (1.5 a 9.0), em ordem alfabética:</p>
+        <ul class="lista-doces">
+          <li>1.5 — Cupcake</li>
+          <li>1.6 — Donut</li>
+          <li>3.0 — Honeycomb</li>
+          <li>4.0 — Ice Cream Sandwich</li>
+          <li>4.1 — Jelly Bean</li>
+          <li>4.4 — KitKat</li>
+          <li>5.0 — Lollipop</li>
+          <li>6.0 — Marshmallow</li>
+          <li>7.0 — Nougat</li>
+          <li>8.0 — Oreo</li>
+          <li>9.0 — Pie</li>
+        </ul>
+      </aside>
+    </article>
+  </main>
+
+  <!-- ====== Rodapé ====== -->
+  <footer class="site">
+    <div class="limite">
+      <small>&copy; Site criado por António Miranda — Desafio #10</small>
+      <div>
+        <a href="#" aria-label="Política de Privacidade">Política de Privacidade</a> ·
+        <a href="#" aria-label="Termos de Uso">Termos de Uso</a> ·
+        <a href="#" aria-label="Contato">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
